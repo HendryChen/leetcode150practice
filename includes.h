@@ -1,0 +1,10 @@
+void leetcode_merge_two_vector();
+void leetcode_remove_element();
+void leetcode_remove_duplicate();
+void leetcode_majortyelement();
+void leetcode_vector_rotate();
+void leetcode_max_profit2();
+void leetcode_jump_game();
+void leetcode_h_index();
+void leetcode_product();
+void leetcode_jump_gameII();
