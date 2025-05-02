@@ -8,3 +8,4 @@ void leetcode_jump_game();
 void leetcode_h_index();
 void leetcode_product();
 void leetcode_jump_gameII();
+void leetcode_romanToint();

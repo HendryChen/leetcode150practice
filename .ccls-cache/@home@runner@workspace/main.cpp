@@ -47,7 +47,7 @@
 using namespace std; // define solution space
 
 int main(int argc, char *argv[]) {
-  int testID = 10;
+  int testID = 11;
 
   if (argc < 2)
     printf("default test ID %d\n", testID);
@@ -88,6 +88,9 @@ int main(int argc, char *argv[]) {
     break;
   case 10:
     leetcode_jump_gameII(); 
+    break;
+  case 11:
+    leetcode_romanToint();
     break;
   default:
     printf("not a supported testID : %d\n", testID);
@@ -802,4 +805,119 @@ void leetcode_product() {
   vector<int> nums{1, 2, 3, 4};
   solution_product sol;
   vector<int> rst = sol.product_sol(nums);
+}
+
+/*
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+For example, 2 is written as II in Roman numeral, just two ones added together. 12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II.
+
+Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+
+I can be placed before V (5) and X (10) to make 4 and 9. 
+X can be placed before L (50) and C (100) to make 40 and 90. 
+C can be placed before D (500) and M (1000) to make 400 and 900.
+Given a roman numeral, convert it to an integer.
+*/
+
+
+class Solution_romanToInt {
+public:
+    int romanToInt(string s) {
+      int nums = 0;
+      char last_char;
+      for(auto &it:s)
+      {
+        switch(it)
+          {
+          case 'I':
+            nums+=1;
+           break;
+          case 'V':
+            {
+              nums+=5;
+              if(last_char == 'I')
+              {
+                nums-=2;
+              }
+           break;
+            }
+          case 'X':
+            {
+              nums+=10;
+              if(last_char == 'I')
+              {
+                nums-=2;
+              }
+              break;
+            }
+          case 'L':
+            {
+            nums+=50;
+              if(last_char == 'X')
+                {
+                  nums-=20;
+                }
+           break;
+            }
+          case 'C':
+            {
+              nums+=100;
+              if(last_char == 'X')
+              {
+                nums-= 20;
+              }
+             break;
+            }
+           break;
+          case 'D':
+            {
+            nums+=500;
+              if(last_char == 'C')
+                {
+                  nums-= 200;
+                }
+            break;
+            }
+          case 'M':
+            {
+              nums+=1000;
+              if(last_char == 'C')
+              {
+                nums-= 200;
+              }
+              break;
+            }
+          }
+          last_char = it;
+      }
+      return nums;
+    }
+};
+
+void leetcode_romanToint() {
+  
+  string roman_str = "III";
+  Solution_romanToInt roman;
+  //{3,0,6,1,5};
+  // 0 1 3 5 6
+  // 6 5 3 1 0
+  //{1,3,1}
+  // 1 1 3
+  // 3 1 1
+  printf("the rst is %d \n", roman.romanToInt(roman_str));
+
+  roman_str = "LVIII";
+  printf("the rst is %d \n", roman.romanToInt(roman_str));
+
+  roman_str = "MCMXCIV";
+  printf("the rst is %d \n", roman.romanToInt(roman_str));
 }
